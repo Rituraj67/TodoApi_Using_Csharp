@@ -1,0 +1,95 @@
+# Gitignore for a .NET Web API project
+
+# Ignore the obj folder which contains the intermediate build results
+obj/
+
+# Ignore the bin folder which contains the final build output
+bin/
+
+# Ignore the NuGet packages folder
+packages/
+
+# Ignore the .vs folder which contains Visual Studio IDE specific files
+.vs/
+
+# Ignore the .vscode folder which contains VS Code IDE specific files
+.vscode/
+
+# Ignore the .user file which contains user specific settings
+*.user
+
+# Ignore the .suo file which contains solution user options
+*.suo
+
+# Ignore the .sln.docstates file which contains solution document states
+*.sln.docstates
+
+# Ignore the .vssscc folder which contains source control settings
+.vssscc/
+
+# Ignore the NuGet package cache folder
+# NuGet
+## Package Cache
+# *.nupkg
+# packages/
+
+# Ignore the logs folder
+logs/
+
+# Ignore the uploads folder if you have one
+uploads/
+
+# Ignore the .env file which contains environment variables
+.env
+
+# Ignore the launchSettings.json file which contains launch configuration settings
+launchSettings.json
+
+# Ignore the appsettings.json file if you don't want to track your app's configuration
+# appsettings.json
+
+# Ignore the .NET Core SDK specific files
+global.json
+*.nuget.g.props
+*.nuget.g.targets
+
+# Ignore the .NET Core runtime directory
+# .NET Core
+## Windows
+*.exe
+*.pdb
+*.dll
+
+# Ignore the build directory if you have one
+build/
+
+# Ignore the coverage directory if you have one
+coverage/
+
+# Ignore the test results directory if you have one
+TestResults/
+
+# Ignore the .vs/ folder for Visual Studio for Mac
+.vs/
+
+# Ignore the .DS_Store files that are generated on macOS
+.DS_Store
+
+# Ignore the .git folder which contains the Git repository metadata
+.git/
+
+# Ignore the .vscode/ folder which contains VS Code IDE specific files
+.vscode/
+
+# Ignore the .NET Core SDK generated files
+*.nupkg
+*.snupkg
+*.xproj
+*.userprefs
+*.usertasks
+*.sln.docstates
+*.sln.dotsettings
+*.sln.dotsettings.user
+*.sln.iml.user
+*.sln不理号
+*.sln不理号.user
