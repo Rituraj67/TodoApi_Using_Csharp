@@ -85,6 +85,7 @@ TestResults/
 *.nupkg
 *.snupkg
 *.xproj
+*.csproj
 *.userprefs
 *.usertasks
 *.sln.docstates
