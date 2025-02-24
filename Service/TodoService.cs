@@ -38,5 +38,31 @@ namespace MyTodo.Service
             var todos = await _context.Todos.Where(todo => todo.UserId == UserId).ToListAsync();
             return todos;
         }
+
+        public async Task<Todo?> UpdateTodo(TodoDto request, Guid TodoId)
+        {
+            Todo? todo =await  _context.Todos.FindAsync(TodoId);
+            if(todo is null)
+            {
+                return null;
+            }
+            if (!string.IsNullOrEmpty(request.Task))
+            {
+                todo.Task = request.Task;
+            }
+            todo.IsComplete = request.IsComplete;
+            await _context.SaveChangesAsync();
+            return todo;
+        }
+
+        
+        public async Task<Todo?> DeleteTodoAsync(Guid id)
+        {
+            var todo = await _context.Todos.FindAsync(id);
+            if (todo is null) return null;
+            _context.Todos.Remove(todo);
+            await _context.SaveChangesAsync();
+            return todo;
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace MyTodo.Service
     {
         public Task<Todo> CreateTodoAsync(TodoDto request);
         public Task<ICollection<Todo>> GetTodosAsync(Guid UserId);
+        public Task<Todo?> UpdateTodo(TodoDto request, Guid TodoId);
+        public Task<Todo?> DeleteTodoAsync(Guid id);
         
     }
 }

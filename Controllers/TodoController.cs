@@ -29,9 +29,9 @@ namespace MyTodo.Controllers
             return Ok(res);
         }
 
-        [HttpGet("getAllTodos")]
+        [HttpGet("/getAllTodos")]
 
-        public async Task<ActionResult<ICollection<Todo>>> getAllTodos()
+        public async Task<ActionResult<ICollection<Todo>>> GetAllTodos()
         {
             Guid UserId;
 
@@ -47,6 +47,27 @@ namespace MyTodo.Controllers
             {
                 return BadRequest("Invalid User ID format");
             }
+        }
+
+        [HttpPut("/updateTodo/{id}")]
+        public async Task<ActionResult<Todo>> ToggleIsComplete(string id,[FromBody] TodoDto request)
+        {
+            Guid TodoId = Guid.Parse(id);
+            var todo = await _todoService.UpdateTodo(request, TodoId);
+            if (todo is null) return NotFound("Todo Not Found");
+            return Ok(todo);
+        }
+
+        [HttpDelete("/{id}")]
+
+        public async Task<ActionResult<Todo>> DeleteTodo(string id)
+        {
+            if (id is null) return BadRequest();
+            Guid guid = Guid.Parse(id);
+            var res = await _todoService.DeleteTodoAsync(guid);
+            if (res is null) return NotFound("Todo with the given id not found");
+            return Ok(res);
+
         }
 
     }

@@ -9,14 +9,46 @@ using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+// Add CORS configuration.
+builder.Services.AddCors(options =>
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.AddPolicy("DevCorsPolicy", policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+    }
+    else
+    {
+        // Read allowed origins from configuration for production.
+        var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+
+        options.AddPolicy("ProdCorsPolicy", policy =>
+        {
+            policy.WithOrigins(allowedOrigins)
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+    }
+});
+
+
 // Load environment variables from .env file
 Env.Load();
+
 
 // Configure app settings
 builder.Configuration
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddEnvironmentVariables();
+
 
 // ✅ Read DB_URI from environment variables
 var dbUri = Environment.GetEnvironmentVariable("DB_URI");
@@ -93,6 +125,17 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ITodoService, TodoService>();
 
 var app = builder.Build();
+
+
+// Apply CORS policy based on environment.
+if (app.Environment.IsDevelopment())
+{
+    app.UseCors("DevCorsPolicy");
+}
+else
+{
+    app.UseCors("ProdCorsPolicy");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
