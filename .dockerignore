@@ -1,0 +1,41 @@
+# Ignore obj and bin directories
+obj/
+bin/
+
+# Ignore NuGet packages directory
+packages/
+
+# Ignore Visual Studio user-specific files
+*.user
+*.suo
+*.userosscache
+
+# Ignore Visual Studio Code workspace files
+.vscode/
+
+# Ignore backup and temporary files
+*.tmp
+*.bak
+*.log
+
+# Ignore the .vs folder for Visual Studio for Mac
+.vs/
+
+# Ignore the .NET Core SDK generated files
+global.json
+*.nuget.g.props
+*.nuget.g.targets
+
+# Ignore the .NET Core runtime directory
+*.dll
+*.exe
+*.pdb
+
+# Ignore the build output directory
+out/
+
+# Ignore the test results directory
+TestResults/
+
+# Ignore the .git folder which contains the Git repository metadata
+.git/
